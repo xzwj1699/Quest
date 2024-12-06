@@ -65,6 +65,12 @@ class BatchDecodeWithPagedKVCacheWrapper:
         rope_scale: Optional[float] = None,
         rope_theta: Optional[float] = None,
     ):
+        # print(paged_kv_data.shape)
+        # print(paged_kv_indices.shape)
+        # print(paged_kv_indptr, paged_kv_indptr.shape)
+        # print(paged_kv_last_page_len)
+        # print(paged_kv_last_page_idx)
+        # exit()
         if rope_scale is None:
             rope_scale = 1.0
         if rope_theta is None:

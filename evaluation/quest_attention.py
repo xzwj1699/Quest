@@ -53,13 +53,16 @@ def local_heavy_hitter_mask(attn_weights, token_budget, chunk_size):
     _, topk = chunk_attn_weights.topk(
         k=min(max(3, token_budget // chunk_size), chunk_attn_weights.size(-1)), dim=-1
     )
+    # print(topk.shape)
     # repeat topk chunk_size times and recover the original indexes (* chunk_size + arange(chunk_size))
     topk = topk.unsqueeze(-1).repeat(
         1, 1, 1, 1, chunk_size
     ) * chunk_size + torch.arange(chunk_size, device=topk.device)
+    # print(topk.shape)
     topk = topk.reshape(topk.shape[0], topk.shape[1], topk.shape[2], -1)
     mask_bottom = torch.zeros_like(attn_weights, dtype=torch.bool)
     mask_bottom.scatter_(-1, topk, True)
+    # print(topk.shape, mask_bottom.shape)
 
     # remove the padding
     mask_bottom = mask_bottom[:, :, :, :seq_length]
@@ -132,6 +135,7 @@ def forward(
     sign = (query_states > 0) + (~(query_states > 0)) * -1
     max_key = key_states * sign
     postive_query = query_states * sign
+    # print(sign.shape, max_key.shape, postive_query.shape)
 
     # expend max_key to be divisible by chunk_size
     seq_length = max_key.shape[-2]
@@ -156,6 +160,8 @@ def forward(
         self.chunk_size,
         max_key.shape[3],
     ).amax(dim=-2)
+
+    # print(max_key.shape, chunk_max_key.shape)
 
     # duplicate chunk_max_key chunk_size times
     chunk_max_key = chunk_max_key.unsqueeze(-2).repeat(1, 1, 1, self.chunk_size, 1)
@@ -192,6 +198,7 @@ def forward(
     token_budget = min(kv_seq_len, self.token_budget)
 
     attn_weights_for_selection = quantized_weight
+    # print("attn weights for selection shape:", attn_weights_for_selection.shape)
 
     if token_budget > 0:
         mask_bottom = local_heavy_hitter_mask(

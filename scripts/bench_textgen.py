@@ -19,7 +19,13 @@ class ModelConfig:
 MODEL_CFGS = {
     "llama2-7b":
         ModelConfig(
-            model_path="/mnt/storage/models/Llama-2-7b-chat-hf"
+            model_path="/root/data/meta-llama/Llama-2-7b-chat-hf/",
+            device="cuda:0"
+        ),
+    "longchat":
+        ModelConfig(
+            model_path="/root/data/longchat-7b-v1.5-32k",
+            device="cuda:0"
         ),
 }
 
@@ -33,6 +39,7 @@ def load_model(model_cfg: ModelConfig):
             model_cfg.model_path,
             device_map=device,
             torch_dtype=dtype,
+            ignore_mismatched_sizes=True,
         )
     return model
 

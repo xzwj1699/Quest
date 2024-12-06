@@ -235,6 +235,7 @@ def decode_topk(
         iController.topk_buf,
         page_budet,
     )
+    # print(iController.topk_buf.shape, iController.kv_indices_without_last.shape)
 
 def decode_sparse_attn(
     q: torch.Tensor,

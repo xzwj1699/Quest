@@ -1,0 +1,60 @@
+Quest allocates KV-Cache of 17152 tokens
+Token budget is set to 64
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,64,16384,256,2.7216089371591807,0.024849099243510864
+Quest allocates KV-Cache of 8960 tokens
+Token budget is set to 64
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,64,8192,256,1.2531076896004378,0.02394525253948814
+Quest allocates KV-Cache of 4864 tokens
+Token budget is set to 64
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,64,4096,256,0.650519333127886,0.0235339407070569
+Quest allocates KV-Cache of 17152 tokens
+Token budget is set to 128
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,128,16384,256,2.75082005225122,0.024888061971068964
+Quest allocates KV-Cache of 8960 tokens
+Token budget is set to 128
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,128,8192,256,1.273534514568746,0.024015497408254306
+Quest allocates KV-Cache of 4864 tokens
+Token budget is set to 128
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,128,4096,256,0.6492740630172193,0.02358682694066374
+Quest allocates KV-Cache of 17152 tokens
+Token budget is set to 256
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,256,16384,256,2.7547819749452174,0.025029207912302807
+Quest allocates KV-Cache of 8960 tokens
+Token budget is set to 256
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,256,8192,256,1.2630119659006596,0.02413883975423232
+Quest allocates KV-Cache of 4864 tokens
+Token budget is set to 256
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,256,4096,256,0.6493362344801425,0.023715801846628894
+Quest allocates KV-Cache of 17152 tokens
+Token budget is set to 512
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,512,16384,256,2.7565922252833843,0.02524185796282836
+Quest allocates KV-Cache of 8960 tokens
+Token budget is set to 512
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,512,8192,256,1.2659851910546422,0.024333739918802166
+Quest allocates KV-Cache of 4864 tokens
+Token budget is set to 512
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,512,4096,256,0.6490329005755484,0.023897414291423048
+Quest allocates KV-Cache of 17152 tokens
+Token budget is set to 1024
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,1024,16384,256,2.7580033952370284,0.025633741372075747
+Quest allocates KV-Cache of 8960 tokens
+Token budget is set to 1024
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,1024,8192,256,1.2639022785238923,0.024726735110380104
+Quest allocates KV-Cache of 4864 tokens
+Token budget is set to 1024
+page_size,token_budget,context_len,decode_len,avg_prefill_latency,avg_decode_latency
+32,1024,4096,256,0.6508246913552285,0.024299258591418037

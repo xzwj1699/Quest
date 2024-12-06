@@ -97,7 +97,8 @@ if __name__ == '__main__':
                 if "length" in data:
                     lengths.append(data["length"])
         if args.e:
-            score = scorer_e(dataset, predictions, answers, lengths, all_classes)
+            # score = scorer_e(dataset, predictions, answers, lengths, all_classes)
+            score = scorer(dataset, predictions, answers, all_classes)
         else:
             score = scorer(dataset, predictions, answers, all_classes)
         scores[filename] = score

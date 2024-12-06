@@ -39,7 +39,8 @@ def parse_args(args=None):
     )
     parser.add_argument("--e", action="store_true", help="Evaluate on LongBench-E")
 
-    parser.add_argument("--task", type=str, help="task name", required=True)
+    # parser.add_argument("--task", type=str, help="task name", required=True)
+    parser.add_argument("--task", type=str, help="task name")
 
     parser.add_argument("--token_budget", type=int, default=None)
     parser.add_argument("--chunk_size", type=int, default=None)
@@ -265,21 +266,22 @@ if __name__ == "__main__":
     if args.e:
         datasets = [
             "qasper",
-            "multifieldqa_en",
-            "hotpotqa",
-            "2wikimqa",
-            "gov_report",
-            "multi_news",
-            "trec",
-            "triviaqa",
-            "samsum",
-            "passage_count",
-            "passage_retrieval_en",
-            "lcc",
-            "repobench-p",
+            # "multifieldqa_en",
+            # "hotpotqa",
+            # "2wikimqa",
+            # "gov_report",
+            # "multi_news",
+            # "trec",
+            # "triviaqa",
+            # "samsum",
+            # "passage_count",
+            # "passage_retrieval_en",
+            # "lcc",
+            # "repobench-p",
         ]
     else:
         datasets = [args.task]
+    print(datasets)
     # we design specific prompt format and max generation length for each task, feel free to modify them to optimize model output
     dataset2prompt = json.load(open("config/dataset2prompt.json", "r"))
     dataset2maxlen = json.load(open("config/dataset2maxlen.json", "r"))
@@ -290,20 +292,22 @@ if __name__ == "__main__":
         os.makedirs("pred_e")
     for dataset in datasets:
         if args.e:
-            data = load_dataset("THUDM/LongBench", f"{dataset}_e", split="test")
+            # data = load_dataset("THUDM/LongBench", f"{dataset}_e", split="test")
+            data = load_dataset("/root/data/LongBench", f"{dataset}_e", split="test")
             if not os.path.exists(f"pred_e/{model_name}"):
                 os.makedirs(f"pred_e/{model_name}")
             out_path = f"pred_e/{model_name}/{dataset}.jsonl"
             if args.quest:
-                out_path = f"pred_e/{model_name}/{dataset}-{args.token_budget}.jsonl"
+                out_path = f"pred_e/{model_name}/{dataset}-{args.token_budget}-{args.chunk_size}.jsonl"
             else:
                 out_path = f"pred_e/{model_name}/{dataset}-full.jsonl"
         else:
-            data = load_dataset("THUDM/LongBench", dataset, split="test")
+            # data = load_dataset("THUDM/LongBench", dataset, split="test")
+            data = load_dataset("/root/data/LongBench", dataset, split="test")
             if not os.path.exists(f"pred/{model_name}"):
                 os.makedirs(f"pred/{model_name}")
             if args.quest:
-                out_path = f"pred/{model_name}/{dataset}-{args.token_budget}.jsonl"
+                out_path = f"pred/{model_name}/{dataset}-{args.token_budget}-{args.chunk_size}.jsonl"
             else:
                 out_path = f"pred/{model_name}/{dataset}-full.jsonl"
         prompt_format = dataset2prompt[dataset]
